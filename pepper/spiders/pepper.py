@@ -19,3 +19,9 @@ class PepperSpider(scrapy.Spider):
                 description=img.xpath('./parent::p/text()').get(),
                 link=link,
             )
+
+        current_page = response.xpath('//span[@class="page-numbers current"]')
+        next_page = current_page.xpath('./parent::li/following-sibling::li[1]/a/@href').get()
+
+        if next_page:
+            yield scrapy.Request(next_page, callback=self.parse)
