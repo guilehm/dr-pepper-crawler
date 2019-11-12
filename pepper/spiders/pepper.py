@@ -13,10 +13,13 @@ class PepperSpider(scrapy.Spider):
         images = response.xpath(
             './/img[contains(@class,"size-full")]'
         )
-        if not images:
-            images = response.xpath(
-                './/img[contains(@class,"alignnone")]'
-            )
+        images += response.xpath(
+            './/img[contains(@class,"alignnone")]'
+        )
+        images += response.xpath(
+            './/img[contains(@src,"/tirinhas/")]'
+        )
+        images = set(images)
 
         for img in images:
             link = img.xpath('./@src').get()
