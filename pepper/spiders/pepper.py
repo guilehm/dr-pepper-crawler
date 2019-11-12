@@ -27,6 +27,7 @@ class PepperSpider(scrapy.Spider):
                 name=os.path.basename(link),
                 description=img.xpath('./parent::p/text()').get(),
                 link=link,
+                image_urls=[link],
             )
 
         current_page = response.xpath('//span[@class="page-numbers current"]')
