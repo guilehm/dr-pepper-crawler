@@ -4,6 +4,7 @@ import scrapy
 
 from pepper.items import PepperItem
 
+
 class PepperSpider(scrapy.Spider):
     name = 'pepper'
     start_urls = ['https://blog.drpepper.com.br']
