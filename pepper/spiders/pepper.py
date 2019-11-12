@@ -11,8 +11,13 @@ class PepperSpider(scrapy.Spider):
 
     def parse(self, response):
         images = response.xpath(
-            './/img[contains(@class,"aligncenter size-full wp-image-")]'
+            './/img[contains(@class,"size-full")]'
         )
+        if not images:
+            images = response.xpath(
+                './/img[contains(@class,"alignnone")]'
+            )
+
         for img in images:
             link = img.xpath('./@src').get()
             yield PepperItem(
