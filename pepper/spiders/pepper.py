@@ -2,6 +2,7 @@ import os
 
 import scrapy
 
+from pepper.items import PepperItem
 
 class PepperSpider(scrapy.Spider):
     name = 'pepper'
@@ -13,7 +14,7 @@ class PepperSpider(scrapy.Spider):
         )
         for img in images:
             link = img.xpath('./@src').get()
-            yield dict(
+            yield PepperItem(
                 name=os.path.basename(link),
                 description=img.xpath('./parent::p/text()').get(),
                 link=link,
