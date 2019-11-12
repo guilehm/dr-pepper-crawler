@@ -12,3 +12,5 @@ class PepperItem(scrapy.Item):
     name = scrapy.Field()
     description = scrapy.Field()
     link = scrapy.Field()
+    image_urls = scrapy.Field()
+    images = scrapy.Field()
